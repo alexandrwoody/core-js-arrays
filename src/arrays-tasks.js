@@ -284,7 +284,7 @@ function distinct(arr) {
  *    createNDimensionalArray(1, 1) => [0]
  */
 function createNDimensionalArray(n, size) {
-  let arr = Array(size).fill(0);
+  throw new Error('Not implemented');
 
 }
 
