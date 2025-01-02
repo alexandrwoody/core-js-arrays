@@ -571,8 +571,14 @@ function findLongestIncreasingSubsequence(nums) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  const res = arr.reduce((acc, el, index) => {
+    for (let i = 0; i < index + 1; i += 1) {
+      acc.push(el);
+    }
+    return acc;
+  }, []);
+  return arr.length < 1 ? [] : res;
 }
 
 /**
@@ -588,8 +594,17 @@ function propagateItemsByPositionIndex(/* arr */) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+function shiftArray(arr, n) {
+  if (n < 0) {
+    for (let i = 0; i < Math.abs(n); i += 1) {
+      arr.push(arr.shift());
+    }
+  } else {
+    for (let i = 0; i < Math.abs(n); i += 1) {
+      arr.unshift(arr.pop());
+    }
+  }
+  return arr;
 }
 
 /**
@@ -605,8 +620,20 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const nums = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
+  return arr.length > 0 ? arr.sort((a, b) => nums[a] - nums[b]) : [];
 }
 
 /**
@@ -628,8 +655,13 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const length = arr.length / 2;
+  const removed = arr.splice(Math.ceil(length), Math.floor(length));
+  const lastremoved = arr.splice(0, Math.floor(length));
+  arr.unshift(...removed);
+  arr.push(...lastremoved);
+  return arr;
 }
 
 module.exports = {
